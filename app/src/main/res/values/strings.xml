@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Petshop</string>
+    <string name="title_email">Email</string>
+    <string name="title_password">Senha</string>
+    <string name="title_logo">Logo</string>
+    <string name="action_sigin">Entrar</string>
+
+
+</resources>
