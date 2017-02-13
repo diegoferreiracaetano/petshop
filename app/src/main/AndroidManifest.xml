@@ -3,13 +3,14 @@
     package="br.com.diegoferreiracaetano.petshop">
 
     <application
+        android:name=".AppApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".login.login.LoginActivity"  android:theme="@style/AppTheme.Dark">
+        <activity android:name=".presentation.login.LoginActivity"  android:theme="@style/AppTheme.Dark">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
