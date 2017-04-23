@@ -18,13 +18,11 @@ public class ApplicationModule {
         this.mContext = mContext;
     }
 
-    @Singleton
     @Provides
     public Context provideContext() {
         return mContext;
     }
 
-    @Singleton
     @Provides
     public SharedPreferences provideSharedPreferences(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context);

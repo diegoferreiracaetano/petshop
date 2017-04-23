@@ -2,14 +2,18 @@ package br.com.diegoferreiracaetano.petshop;
 
 import android.app.Application;
 
-import br.com.diegoferreiracaetano.petshop.data.repository.DaggerRepositoryComponent;
-import br.com.diegoferreiracaetano.petshop.data.repository.RepositoryComponent;
-import br.com.diegoferreiracaetano.petshop.data.repository.firebase.FirebaseRepositoryModule;
+import br.com.diegoferreiracaetano.petshop.data.database.interfaces.DaggerRepositoryComponent;
+import br.com.diegoferreiracaetano.petshop.data.database.interfaces.RepositoryComponent;
+import br.com.diegoferreiracaetano.petshop.data.database.firebase.FirebaseRepositoryModule;
+import br.com.diegoferreiracaetano.petshop.data.storage.firebase.StorageFirebaseModule;
+import br.com.diegoferreiracaetano.petshop.data.storage.interfaces.DaggerStorageComponent;
+import br.com.diegoferreiracaetano.petshop.data.storage.interfaces.StorageComponent;
 
 public class AppApplication extends Application{
 
     private static ApplicationComponent mApplicationComponent;
     private static RepositoryComponent mRepositoryComponent;
+    private static StorageComponent mStorageComponent;
 
     @Override
     public void onCreate() {
@@ -23,6 +27,10 @@ public class AppApplication extends Application{
                                 .firebaseRepositoryModule(new FirebaseRepositoryModule())
                                 .build();
 
+
+        mStorageComponent = DaggerStorageComponent.builder()
+                .storageFirebaseModule(new StorageFirebaseModule())
+                .build();
     }
 
     public static ApplicationComponent getApplicationComponent() {
@@ -31,5 +39,9 @@ public class AppApplication extends Application{
 
     public static RepositoryComponent getRepositoryComponent() {
         return mRepositoryComponent;
+    }
+
+    public static StorageComponent getStorageComponent() {
+        return mStorageComponent;
     }
 }

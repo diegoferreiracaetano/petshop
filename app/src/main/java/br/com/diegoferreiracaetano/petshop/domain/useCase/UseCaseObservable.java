@@ -1,11 +1,11 @@
-package br.com.diegoferreiracaetano.petshop.domain;
+package br.com.diegoferreiracaetano.petshop.domain.useCase;
 
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public abstract class  UseCase<T, R extends UseCase.Request> {
+public abstract class UseCaseObservable<T, R extends UseCaseObservable.Request> {
 
     protected abstract Observable<T> createObservable(R request);
 

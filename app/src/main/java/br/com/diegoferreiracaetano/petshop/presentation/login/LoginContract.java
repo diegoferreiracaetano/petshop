@@ -11,6 +11,8 @@ public interface LoginContract  {
     interface Presenter extends BasePresenter{
 
         void getListUsers();
+
+        void getUser();
     }
 
     interface View extends BaseView<Presenter> {

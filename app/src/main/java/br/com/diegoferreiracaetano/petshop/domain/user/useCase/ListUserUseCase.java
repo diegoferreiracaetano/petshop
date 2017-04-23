@@ -5,13 +5,15 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import br.com.diegoferreiracaetano.petshop.data.repository.UserRepository;
-import br.com.diegoferreiracaetano.petshop.domain.UseCase;
+import br.com.diegoferreiracaetano.petshop.data.database.interfaces.UserRepository;
+import br.com.diegoferreiracaetano.petshop.domain.useCase.UseCaseFlowable;
+import br.com.diegoferreiracaetano.petshop.domain.useCase.UseCaseObservable;
 import br.com.diegoferreiracaetano.petshop.domain.user.User;
 import br.com.diegoferreiracaetano.petshop.util.dagger.qualify.Firebase;
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 
-public class ListUserUseCase extends UseCase<List<User>, ListUserUseCase.Request>{
+public class ListUserUseCase extends UseCaseFlowable<List<User>, ListUserUseCase.Request> {
 
     UserRepository mRepository;
 
@@ -21,12 +23,12 @@ public class ListUserUseCase extends UseCase<List<User>, ListUserUseCase.Request
     }
 
     @Override
-    protected Observable<List<User>> createObservable(Request request) {
+    protected Flowable<List<User>> createFlowable(Request request) {
         return mRepository.getList();
     }
 
 
-    public static final class Request extends UseCase.Request {
+    public static final class Request extends UseCaseFlowable.Request {
 
     }
 }

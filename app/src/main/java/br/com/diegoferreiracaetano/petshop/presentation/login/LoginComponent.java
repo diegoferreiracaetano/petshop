@@ -1,7 +1,7 @@
 package br.com.diegoferreiracaetano.petshop.presentation.login;
 
 import br.com.diegoferreiracaetano.petshop.ApplicationComponent;
-import br.com.diegoferreiracaetano.petshop.data.repository.RepositoryComponent;
+import br.com.diegoferreiracaetano.petshop.data.database.interfaces.RepositoryComponent;
 import br.com.diegoferreiracaetano.petshop.util.dagger.scope.ActivityScope;
 import dagger.Component;
 

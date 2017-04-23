@@ -4,7 +4,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0-beta3'
+        classpath 'com.android.tools.build:gradle:2.3.1'
         classpath 'com.google.gms:google-services:3.0.0'
         classpath 'me.tatarka:gradle-retrolambda:3.5.0'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
@@ -16,6 +16,7 @@ allprojects {
         jcenter()
         maven { url "https://jitpack.io" }
         mavenCentral()
+        maven {url 'https://maven.fabric.io/public'}
     }
 }
 
@@ -48,8 +49,9 @@ ext {
             okhttp               : '3.4.1',
             qrgen                : '2.2.0',
             glide                : '3.7.0',
-            firebaseCore         : '10.0.0',
-            firebaseDatabase     : '10.0.0'
+            firebaseCore         : '10.2.0',
+            firebaseDatabase     : '10.2.0',
+            firebaseUi           : '1.2.0'
     ]
 
     testingLibraries = [

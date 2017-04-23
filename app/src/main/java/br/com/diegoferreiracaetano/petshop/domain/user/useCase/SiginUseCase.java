@@ -3,13 +3,14 @@ package br.com.diegoferreiracaetano.petshop.domain.user.useCase;
 
 import javax.inject.Inject;
 
-import br.com.diegoferreiracaetano.petshop.data.repository.UserRepository;
-import br.com.diegoferreiracaetano.petshop.domain.UseCase;
+import br.com.diegoferreiracaetano.petshop.data.database.interfaces.UserRepository;
+import br.com.diegoferreiracaetano.petshop.domain.useCase.UseCaseSingle;
 import br.com.diegoferreiracaetano.petshop.domain.user.User;
 import br.com.diegoferreiracaetano.petshop.util.dagger.qualify.Firebase;
 import io.reactivex.Observable;
+import io.reactivex.Single;
 
-public class SiginUseCase extends UseCase<User,SiginUseCase.Request>{
+public class SiginUseCase extends UseCaseSingle<User,SiginUseCase.Request>{
 
     private UserRepository mRepository;
 
@@ -19,11 +20,11 @@ public class SiginUseCase extends UseCase<User,SiginUseCase.Request>{
     }
 
     @Override
-    protected Observable<User> createObservable(Request request) {
+    protected Single<User> createSingle(Request request) {
         return null;
     }
 
-    public static final class Request extends UseCase.Request {
+    public static final class Request extends UseCaseSingle.Request {
 
     }
 }

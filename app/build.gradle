@@ -72,6 +72,12 @@ dependencies {
     compile "com.google.firebase:firebase-storage:$libs.firebaseDatabase"
     compile "com.google.firebase:firebase-crash:$libs.firebaseDatabase"
 
+    // F
+    compile "com.firebaseui:firebase-ui-database:$libs.firebaseUi"
+    compile "com.firebaseui:firebase-ui-auth:$libs.firebaseUi"
+    compile "com.firebaseui:firebase-ui-storage:$libs.firebaseUi"
+    compile "com.firebaseui:firebase-ui:$libs.firebaseUi"
+
     testCompile "junit:junit:$test.junitVersion"
     testCompile "org.mockito:mockito-core:$test.mockito"
     testCompile "org.hamcrest:hamcrest-all:$test.hamcrest"
