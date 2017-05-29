@@ -63,4 +63,13 @@ public class User {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+    public boolean validate(User user,String password){
+        boolean auth = false;
+
+        if(user != null && user.getPassword() != null && user.getPassword().equals(password))
+            auth = true;
+
+        return auth;
+    }
 }

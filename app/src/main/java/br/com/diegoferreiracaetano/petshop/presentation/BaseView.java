@@ -6,6 +6,6 @@ public interface BaseView<T> {
 
    void setPresenter(@NonNull T presenter);
 
-   void showMessageError(String error);
+   void showMessageError(int title,int msg);
 
 }

@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: "me.tatarka.retrolambda"
 apply plugin: 'android-apt'
 
 
@@ -45,7 +44,6 @@ dependencies {
     compile "com.android.support:support-v4:$libs.supportLibraryVersion"
     compile "com.android.support:cardview-v7:$libs.supportLibraryVersion"
     compile "com.android.support:recyclerview-v7:$libs.supportLibraryVersion"
-    compile "com.android.support.constraint:constraint-layout:$libs.constraintLayout"
     compile "com.android.support.constraint:constraint-layout-solver:$libs.constraintLayout"
 
     apt "com.jakewharton:butterknife-compiler:$libs.butterKnifeVersion"
@@ -90,6 +88,8 @@ dependencies {
     androidTestCompile "com.android.support.test:runner:$test.runner"
     androidTestCompile "com.android.support.test:rules:$test.rules"
 
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }
 
 

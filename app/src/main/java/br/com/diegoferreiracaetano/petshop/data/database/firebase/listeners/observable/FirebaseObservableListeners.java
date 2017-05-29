@@ -6,6 +6,7 @@ import com.google.firebase.database.Query;
 
 import java.util.Map;
 
+import io.reactivex.Maybe;
 import io.reactivex.Observable;
 import io.reactivex.functions.Function;
 
@@ -27,6 +28,7 @@ public class FirebaseObservableListeners {
         return Observable.create(new RemoveValueOnSubscriber(databaseReference, returnValue));
     }
 
-
-
+    public <T> Maybe<T> getMaybeValue(Query query, Function<DataSnapshot, T> marshaller) {
+        return Maybe.create(new GetMaybeValueOnSubscribe<>(query, marshaller));
+    }
 }

@@ -1,6 +1,9 @@
 package br.com.diegoferreiracaetano.petshop.presentation.login;
 
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -11,6 +14,8 @@ import javax.inject.Inject;
 import br.com.diegoferreiracaetano.petshop.AppApplication;
 import br.com.diegoferreiracaetano.petshop.ApplicationComponent;
 import br.com.diegoferreiracaetano.petshop.R;
+import br.com.diegoferreiracaetano.petshop.presentation.main.MainActivity;
+import br.com.diegoferreiracaetano.petshop.util.DialogHelper;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -21,9 +26,15 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
 
     @BindView(R.id.login_email)
+    TextInputLayout TI_email;
+
+    @BindView(R.id.login_email_text)
     EditText email;
 
     @BindView(R.id.login_password)
+    TextInputLayout TI_password;
+
+    @BindView(R.id.login_password_text)
     EditText passoword;
 
 
@@ -53,12 +64,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     protected void onStart() {
         super.onStart();
-        mPresenter.getListUsers();
     }
 
     @OnClick(R.id.login_entrar)
     public void sigin(Button button){
-        mPresenter.getListUsers();
+        mPresenter.login(email.getText().toString(),passoword.getText().toString());
     }
 
     @Override
@@ -67,7 +77,23 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     @Override
-    public void showMessageError(String error) {
+    public void showMessageError(int title,int msg) {
+       DialogHelper.dialogMessage(this,title,msg).create();
+    }
 
+
+    @Override
+    public void show() {
+        MainActivity.start(this);
+    }
+
+    @Override
+    public void showErrorEmail(int msg) {
+        TI_email.setError(getString(msg));
+    }
+
+    @Override
+    public void showErrorPassword(int msg) {
+        TI_password.setError(getString(msg));
     }
 }

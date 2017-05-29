@@ -10,12 +10,14 @@ public interface LoginContract  {
 
     interface Presenter extends BasePresenter{
 
-        void getListUsers();
+        void login(String email,String password);
 
-        void getUser();
     }
 
     interface View extends BaseView<Presenter> {
+        void show();
+        void showErrorEmail(int msg);
+        void showErrorPassword(int msg);
 
     }
 }

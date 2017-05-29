@@ -3,7 +3,20 @@
     <string name="title_email">Email</string>
     <string name="title_password">Senha</string>
     <string name="title_logo">Logo</string>
+    <string name="title_error">Error</string>
+    <string name="title_user_not_found">Usuário não encontrado</string>
+    <string name="title_ok">OK</string>
     <string name="action_sigin">Entrar</string>
 
+    <string name="msg_error_general">Não foi possivel realizar a solicitação</string>
+    <string name="msg_error_login_empty">O campo email não pode estar vazio</string>
+    <string name="msg_error_password_empty">O campo senha não pode estar vazia</string>
+    <string name="msg_error_user_not_found">E-mail ou senha estão incorretos</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 
 </resources>

@@ -2,22 +2,15 @@ package br.com.diegoferreiracaetano.petshop.presentation.login;
 
 import android.util.Log;
 
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
-
-import java.util.List;
-
 import javax.inject.Inject;
 
+import br.com.diegoferreiracaetano.petshop.R;
 import br.com.diegoferreiracaetano.petshop.domain.user.User;
-import br.com.diegoferreiracaetano.petshop.domain.user.useCase.GetUserUseCase;
-import br.com.diegoferreiracaetano.petshop.domain.user.useCase.ListUserUseCase;
-import io.reactivex.SingleObserver;
+import br.com.diegoferreiracaetano.petshop.domain.user.useCase.LoginUseCase;
+import io.reactivex.MaybeObserver;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.internal.observers.DisposableLambdaObserver;
-import io.reactivex.observers.DisposableObserver;
-import io.reactivex.subscribers.DisposableSubscriber;
+import io.reactivex.observers.DisposableMaybeObserver;
 
 public class LoginPresenter implements LoginContract.Presenter {
 
@@ -25,16 +18,14 @@ public class LoginPresenter implements LoginContract.Presenter {
     private static final String TAG = LoginPresenter.class.getSimpleName();
 
     LoginContract.View mView;
-    ListUserUseCase mListUserUseCase;
-    GetUserUseCase mGetUserUseCase;
+    LoginUseCase mLoginUseCase;
     private CompositeDisposable mDisposable;
 
     @Inject
-    public LoginPresenter(LoginContract.View mView, ListUserUseCase listUserUseCase, GetUserUseCase getUserUseCase) {
-        this.mView = mView;
-        this.mListUserUseCase = listUserUseCase;
-        this.mGetUserUseCase = getUserUseCase;
-        this.mDisposable = new CompositeDisposable();
+    public LoginPresenter(LoginContract.View view, LoginUseCase loginUseCase) {
+        mView = view;
+        mLoginUseCase = loginUseCase;
+        mDisposable = new CompositeDisposable();
     }
 
 
@@ -55,63 +46,38 @@ public class LoginPresenter implements LoginContract.Presenter {
         mView.setPresenter(this);
     }
 
-    /*   @Override
-    public void getListUsers() {
-        mDisposable.add(mListUserUseCase.execute(new ListUserUseCase.Request()).subscribeWith(new DisposableObserver<List<User>>() {
-            @Override
-            public void onNext(List<User> users) {
-
-                Log.d("USER", users.toString());
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        }));
-    }*/
-
-    public void getListUsers() {
-        mDisposable.add(mListUserUseCase.execute(new ListUserUseCase.Request()).subscribeWith(new DisposableSubscriber<List<User>>() {
-            @Override
-            public void onNext(List<User> users) {
-                Log.d("USER", users.toString());
-            }
-
-            @Override
-            public void onError(Throwable t) {
-                Log.e("USER", t.getMessage());
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        }));
-    }
-
     @Override
-    public void getUser() {
+    public void login(String email, String password) {
 
-        mGetUserUseCase.execute(new GetUserUseCase.Request()).subscribe(new SingleObserver<User>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-                Log.d(TAG, " onSubscribe : " + d.isDisposed());
-            }
+        if(email.isEmpty()){
+            mView.showErrorEmail(R.string.msg_error_login_empty);
+            return;
+        }
 
+        if(password.isEmpty()){
+            mView.showErrorPassword(R.string.msg_error_password_empty);
+            return;
+        }
+
+
+        mLoginUseCase.execute(new LoginUseCase.Request(email,password)).subscribeWith(new DisposableMaybeObserver<User>() {
             @Override
-            public void onSuccess(User user) {
-                Log.d(TAG, " onNext value : " + user);
+            public void onSuccess(User value) {
+                if(value.getName() == null){
+                    mView.showMessageError(R.string.title_user_not_found, R.string.msg_error_user_not_found);
+                }else{
+                    mView.show();
+                }
             }
 
             @Override
             public void onError(Throwable e) {
-                Log.d(TAG, " onError : " + e.getMessage());
+                mView.showMessageError(R.string.title_error,R.string.msg_error_general);
+            }
+
+            @Override
+            public void onComplete() {
+
             }
         });
     }

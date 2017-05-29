@@ -4,9 +4,8 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.1'
+        classpath 'com.android.tools.build:gradle:2.4.0-alpha7'
         classpath 'com.google.gms:google-services:3.0.0'
-        classpath 'me.tatarka:gradle-retrolambda:3.5.0'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
 }
@@ -40,10 +39,10 @@ ext {
     libraries = [
             supportLibraryVersion: '25.1.1',
             butterKnifeVersion   : '8.5.1',
-            rxjava               : '2.0.5',
+            rxjava               : '2.0.1',
             rxandroid            : '2.0.1',
             daggerVersion        : '2.9',
-            constraintLayout     : '1.0.0-beta4',
+            constraintLayout     : '1.0.2',
             retrofit             : '2.1.0',
             guavaVersion         : '19.0',
             okhttp               : '3.4.1',

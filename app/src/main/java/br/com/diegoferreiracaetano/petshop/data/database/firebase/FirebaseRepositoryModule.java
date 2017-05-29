@@ -3,9 +3,7 @@ package br.com.diegoferreiracaetano.petshop.data.database.firebase;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import br.com.diegoferreiracaetano.petshop.data.database.firebase.listeners.flowable.FirebaseFlowableListeners;
 import br.com.diegoferreiracaetano.petshop.data.database.firebase.listeners.observable.FirebaseObservableListeners;
-import br.com.diegoferreiracaetano.petshop.data.database.firebase.listeners.single.FirebaseSingleListeners;
 import br.com.diegoferreiracaetano.petshop.data.database.interfaces.UserRepository;
 import br.com.diegoferreiracaetano.petshop.util.dagger.qualify.Firebase;
 import dagger.Module;
@@ -24,19 +22,10 @@ public class FirebaseRepositoryModule {
         return new FirebaseObservableListeners();
     }
 
-    @Provides
-    FirebaseSingleListeners getSingleListeners() {
-        return new FirebaseSingleListeners();
-    }
-
-    @Provides
-    FirebaseFlowableListeners getFlowableListeners() {
-        return new FirebaseFlowableListeners();
-    }
 
     @Provides
     @Firebase
-    UserRepository getUserFirebaseRepository(DatabaseReference reference, FirebaseObservableListeners mFirebaseObservableListeners, FirebaseSingleListeners  mFirebaseSingleListeners, FirebaseFlowableListeners mFirebaseFlowableListeners){
-        return new UserFirebaseRepository(reference, mFirebaseObservableListeners,mFirebaseSingleListeners, mFirebaseFlowableListeners);
+    UserRepository getUserFirebaseRepository(DatabaseReference reference, FirebaseObservableListeners mFirebaseObservableListeners){
+        return new UserFirebaseRepository(reference, mFirebaseObservableListeners);
     }
 }

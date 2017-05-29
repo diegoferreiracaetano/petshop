@@ -6,6 +6,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.functions.Function;
@@ -41,12 +42,15 @@ public class ListenToSingleValueOnSubscribe<T> implements ObservableOnSubscribe<
         public void onDataChange(DataSnapshot dataSnapshot) {
 
             try {
-                subscriber.onNext(marshaller.apply(dataSnapshot));
+
+                if(marshaller.apply(dataSnapshot) != null)
+                    subscriber.onNext(marshaller.apply(dataSnapshot));
+
+
+                subscriber.onComplete();
             } catch (Exception e) {
                 subscriber.onError(e);
             }
-
-            subscriber.onComplete();
         }
 
         @Override
