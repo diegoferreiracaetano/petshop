@@ -14,5 +14,5 @@ public abstract class LoginModule {
 
     @Binds abstract LoginContract.View provideView(LoginActivity activity);
 
-  //  @Binds abstract LoginContract.Presenter providePresenter(LoginPresenter presenter);
+    @Binds abstract LoginContract.Presenter providePresenter(LoginPresenter presenter);
 }
