@@ -4,23 +4,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
+import static android.os.Build.MODEL;
 
 @Module
-public class ApplicationModule {
+public class AppModule {
 
-    private final Context mContext;
-
-    public ApplicationModule(Context mContext) {
-        this.mContext = mContext;
-    }
-
-    @Provides
-    public Context provideContext() {
-        return mContext;
+    @Provides Context provideContext(AppApplication application) {
+        return application.getApplicationContext();
     }
 
     @Provides

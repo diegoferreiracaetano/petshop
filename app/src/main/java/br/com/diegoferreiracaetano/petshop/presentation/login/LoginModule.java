@@ -1,19 +1,17 @@
 package br.com.diegoferreiracaetano.petshop.presentation.login;
 
+import android.app.Activity;
+
+import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
+import dagger.android.ActivityKey;
+import dagger.android.AndroidInjector;
+import dagger.multibindings.IntoMap;
 
-@Module
-public class LoginModule {
+@Module(subcomponents = LoginSubcomponent.class)
+public abstract class LoginModule {
 
-    private LoginContract.View view;
+    @Binds abstract LoginContract.View provideView(LoginActivity loginActivity);
 
-    public LoginModule(LoginContract.View view) {
-        this.view = view;
-    }
-
-    @Provides
-    public LoginContract.View getView() {
-        return view;
-    }
 }

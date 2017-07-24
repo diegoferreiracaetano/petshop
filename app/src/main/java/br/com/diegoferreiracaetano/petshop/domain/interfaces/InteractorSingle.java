@@ -1,18 +1,17 @@
-package br.com.diegoferreiracaetano.petshop.domain.useCase;
+package br.com.diegoferreiracaetano.petshop.domain.interfaces;
 
 
-import io.reactivex.Maybe;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public abstract class UseCaseMaybe<T, R extends UseCaseMaybe.Request> {
+public abstract class InteractorSingle<T, R extends InteractorSingle.Request> {
 
-    protected abstract Maybe<T> createMaybe(R request);
+    protected abstract Single<T> create(R request);
 
-    public Maybe<T> execute(R request){
+    public Single<T> execute(R request){
 
-        return createMaybe(request)
+        return create(request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

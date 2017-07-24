@@ -1,15 +1,11 @@
 package br.com.diegoferreiracaetano.petshop.presentation.login;
 
-import android.util.Log;
-
 import javax.inject.Inject;
 
 import br.com.diegoferreiracaetano.petshop.R;
 import br.com.diegoferreiracaetano.petshop.domain.user.User;
 import br.com.diegoferreiracaetano.petshop.domain.user.useCase.LoginUseCase;
-import io.reactivex.MaybeObserver;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableMaybeObserver;
 
 public class LoginPresenter implements LoginContract.Presenter {
@@ -38,12 +34,6 @@ public class LoginPresenter implements LoginContract.Presenter {
     @Override
     public void onDestroyView() {
         mDisposable.dispose();
-    }
-
-
-    @Inject
-    public void setupListeners() {
-        mView.setPresenter(this);
     }
 
     @Override

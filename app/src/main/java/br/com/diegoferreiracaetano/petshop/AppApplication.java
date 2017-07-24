@@ -1,47 +1,29 @@
 package br.com.diegoferreiracaetano.petshop;
 
-import android.app.Application;
+import android.util.Log;
 
-import br.com.diegoferreiracaetano.petshop.data.database.interfaces.DaggerRepositoryComponent;
-import br.com.diegoferreiracaetano.petshop.data.database.interfaces.RepositoryComponent;
-import br.com.diegoferreiracaetano.petshop.data.database.firebase.FirebaseRepositoryModule;
-import br.com.diegoferreiracaetano.petshop.data.storage.firebase.StorageFirebaseModule;
-import br.com.diegoferreiracaetano.petshop.data.storage.interfaces.DaggerStorageComponent;
-import br.com.diegoferreiracaetano.petshop.data.storage.interfaces.StorageComponent;
+import javax.inject.Inject;
 
-public class AppApplication extends Application{
+import dagger.android.AndroidInjector;
+import dagger.android.support.DaggerApplication;
 
-    private static ApplicationComponent mApplicationComponent;
-    private static RepositoryComponent mRepositoryComponent;
-    private static StorageComponent mStorageComponent;
+public class AppApplication extends DaggerApplication{
+
+    private static final String TAG = AppApplication.class.getSimpleName();
+
+    @Inject
+    void logInjection() {
+        Log.i(TAG, "Injecting " + AppApplication.class.getSimpleName());
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
-
-       mApplicationComponent =  DaggerApplicationComponent.builder()
-                                .applicationModule(new ApplicationModule(getApplicationContext()))
-                                .build();
-
-       mRepositoryComponent = DaggerRepositoryComponent.builder()
-                                .firebaseRepositoryModule(new FirebaseRepositoryModule())
-                                .build();
-
-
-        mStorageComponent = DaggerStorageComponent.builder()
-                .storageFirebaseModule(new StorageFirebaseModule())
-                .build();
     }
 
-    public static ApplicationComponent getApplicationComponent() {
-        return mApplicationComponent;
-    }
+    @Override
+    protected AndroidInjector<AppApplication> applicationInjector() {
 
-    public static RepositoryComponent getRepositoryComponent() {
-        return mRepositoryComponent;
-    }
-
-    public static StorageComponent getStorageComponent() {
-        return mStorageComponent;
+        return DaggerAppComponent.builder().create(this);
     }
 }

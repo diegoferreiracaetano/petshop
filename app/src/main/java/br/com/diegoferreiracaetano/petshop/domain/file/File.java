@@ -1,8 +1,5 @@
 package br.com.diegoferreiracaetano.petshop.domain.file;
 
-import java.util.Date;
-import java.util.UUID;
-
 public class File {
 
     private String id;

@@ -4,17 +4,13 @@ package br.com.diegoferreiracaetano.petshop.domain.user.useCase;
 import javax.inject.Inject;
 
 import br.com.diegoferreiracaetano.petshop.data.database.interfaces.UserRepository;
-import br.com.diegoferreiracaetano.petshop.domain.useCase.UseCaseMaybe;
-import br.com.diegoferreiracaetano.petshop.domain.useCase.UseCaseObservable;
-import br.com.diegoferreiracaetano.petshop.domain.useCase.UseCaseSingle;
+import br.com.diegoferreiracaetano.petshop.domain.interfaces.InteractorMaybe;
 import br.com.diegoferreiracaetano.petshop.domain.user.User;
 import br.com.diegoferreiracaetano.petshop.util.Md5Helper;
 import br.com.diegoferreiracaetano.petshop.util.dagger.qualify.Firebase;
 import io.reactivex.Maybe;
-import io.reactivex.Observable;
-import io.reactivex.Single;
 
-public class LoginUseCase extends UseCaseMaybe<User,LoginUseCase.Request> {
+public class LoginUseCase extends InteractorMaybe<User,LoginUseCase.Request> {
 
     UserRepository mRepository;
 
@@ -24,14 +20,14 @@ public class LoginUseCase extends UseCaseMaybe<User,LoginUseCase.Request> {
     }
 
     @Override
-    protected Maybe<User> createMaybe(LoginUseCase.Request request) {
+    protected Maybe<User> create(LoginUseCase.Request request) {
 
         return mRepository.getUser(request.getLogin())
                 .filter(user -> user.validate(user, Md5Helper.add(request.getPassword()))).defaultIfEmpty(new User());
     }
 
 
-    public static final class Request extends UseCaseMaybe.Request {
+    public static final class Request extends InteractorMaybe.Request {
 
         private String login;
         private String password;

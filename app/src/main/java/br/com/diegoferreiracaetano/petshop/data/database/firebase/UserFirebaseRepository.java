@@ -9,16 +9,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import br.com.diegoferreiracaetano.petshop.data.database.firebase.listeners.observable.FirebaseObservableListeners;
+import br.com.diegoferreiracaetano.petshop.data.database.firebase.listeners.FirebaseObservableListeners;
 import br.com.diegoferreiracaetano.petshop.data.database.firebase.utils.FirebaseFunctions;
 import br.com.diegoferreiracaetano.petshop.data.database.interfaces.UserRepository;
 import br.com.diegoferreiracaetano.petshop.domain.user.User;
 import br.com.diegoferreiracaetano.petshop.util.Md5Helper;
-import io.reactivex.BackpressureStrategy;
-import io.reactivex.Flowable;
 import io.reactivex.Maybe;
-import io.reactivex.Observable;
-import io.reactivex.Single;
 
 public class UserFirebaseRepository extends FirebaseFunctions<User> implements UserRepository {
 
@@ -38,13 +34,13 @@ public class UserFirebaseRepository extends FirebaseFunctions<User> implements U
     public Maybe<User> getUser(String email) {
         String key = Md5Helper.add(email);
         Query query = mRoot.child("users").child(key);
-        return mFirebaseObservableListeners.getMaybeValue(query,toClass());
+        return mFirebaseObservableListeners.singleValeu(query,toClass());
     }
 
     @Override
-    public Flowable<List<User>> getList() {
+    public Maybe<List<User>> getList() {
         Query query = mRoot.child("users");
-        return mFirebaseObservableListeners.listenToSingleValueEvents(query,toList()).toFlowable(BackpressureStrategy.BUFFER);
+        return mFirebaseObservableListeners.singleValeu(query,toList());
     }
 
 

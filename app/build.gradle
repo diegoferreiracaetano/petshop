@@ -1,6 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'android-apt'
-
 
 def cfg = rootProject.ext.configuration
 def libs = rootProject.ext.libraries;
@@ -46,7 +44,7 @@ dependencies {
     compile "com.android.support:recyclerview-v7:$libs.supportLibraryVersion"
     compile "com.android.support.constraint:constraint-layout-solver:$libs.constraintLayout"
 
-    apt "com.jakewharton:butterknife-compiler:$libs.butterKnifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$libs.butterKnifeVersion"
     compile "com.jakewharton:butterknife:$libs.butterKnifeVersion"
 
     compile "io.reactivex.rxjava2:rxjava:$libs.rxjava"
@@ -58,8 +56,9 @@ dependencies {
     compile "com.squareup.okhttp3:logging-interceptor:$libs.okhttp"
 
     // Dagger dependencies
-    apt "com.google.dagger:dagger-compiler:$libs.daggerVersion"
-    compile "com.google.dagger:dagger:$libs.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$libs.daggerVersion"
+    compile "com.google.dagger:dagger-android:$libs.daggerVersion"
+    compile "com.google.dagger:dagger-android-support:$libs.daggerVersion"
 
     //Glibe
     compile "com.github.bumptech.glide:glide:$libs.glide"
