@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import br.com.diegoferreiracaetano.petshop.presentation.login.LoginSubcomponent;
 import dagger.Module;
 import dagger.Provides;
 import static android.os.Build.MODEL;

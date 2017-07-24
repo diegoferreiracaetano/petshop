@@ -9,9 +9,10 @@ import dagger.android.ActivityKey;
 import dagger.android.AndroidInjector;
 import dagger.multibindings.IntoMap;
 
-@Module(subcomponents = LoginSubcomponent.class)
+@Module
 public abstract class LoginModule {
 
-    @Binds abstract LoginContract.View provideView(LoginActivity loginActivity);
+    @Binds abstract LoginContract.View provideView(LoginActivity activity);
 
+  //  @Binds abstract LoginContract.Presenter providePresenter(LoginPresenter presenter);
 }

@@ -10,8 +10,8 @@ import dagger.android.ActivityKey;
 import dagger.android.AndroidInjector;
 import dagger.multibindings.IntoMap;
 
-@Module
-public abstract class BuildersModule {
+@Module(subcomponents = {LoginSubcomponent.class})
+public abstract class ActivityModule {
 
     @Binds
     @IntoMap

@@ -33,7 +33,7 @@ public class LoginActivity extends DaggerAppCompatActivity implements LoginContr
 
 
     @Inject
-    LoginPresenter mPresenter;
+    LoginContract.Presenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
