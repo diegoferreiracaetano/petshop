@@ -42,7 +42,5 @@ public class UserFirebaseRepository extends FirebaseFunctions<User> implements U
         Query query = mRoot.child("users");
         return mFirebaseObservableListeners.singleValeu(query,toList());
     }
-
-
 }
 

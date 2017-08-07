@@ -5,10 +5,13 @@ def libs = rootProject.ext.libraries;
 def test = rootProject.ext.testingLibraries;
 
 android {
+
+
     compileSdkVersion cfg.compileVersion
     buildToolsVersion cfg.buildToolsVersion
 
     defaultConfig {
+        resConfigs "auto"
         applicationId cfg.package
         minSdkVersion cfg.minSdk
         targetSdkVersion cfg.compileVersion
@@ -43,22 +46,21 @@ dependencies {
     compile "com.android.support:cardview-v7:$libs.supportLibraryVersion"
     compile "com.android.support:recyclerview-v7:$libs.supportLibraryVersion"
     compile "com.android.support.constraint:constraint-layout-solver:$libs.constraintLayout"
+    compile "com.android.support.constraint:constraint-layout:$libs.constraintLayout"
 
-    annotationProcessor "com.jakewharton:butterknife-compiler:$libs.butterKnifeVersion"
     compile "com.jakewharton:butterknife:$libs.butterKnifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$libs.butterKnifeVersion"
 
     compile "io.reactivex.rxjava2:rxjava:$libs.rxjava"
     compile "io.reactivex.rxjava2:rxandroid:$libs.rxandroid"
-    compile "com.squareup.retrofit2:retrofit:$libs.retrofit"
-    compile "com.squareup.retrofit2:converter-gson:$libs.retrofit"
-    compile "com.squareup.retrofit2:adapter-rxjava:$libs.retrofit"
-    compile "com.google.guava:guava:$libs.guavaVersion"
-    compile "com.squareup.okhttp3:logging-interceptor:$libs.okhttp"
 
     // Dagger dependencies
-    annotationProcessor "com.google.dagger:dagger-compiler:$libs.daggerVersion"
+    compile "com.google.dagger:dagger:$libs.daggerVersion"
     compile "com.google.dagger:dagger-android:$libs.daggerVersion"
     compile "com.google.dagger:dagger-android-support:$libs.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$libs.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$libs.daggerVersion"
+
 
     //Glibe
     compile "com.github.bumptech.glide:glide:$libs.glide"
@@ -77,18 +79,11 @@ dependencies {
 
     testCompile "junit:junit:$test.junitVersion"
     testCompile "org.mockito:mockito-core:$test.mockito"
-    testCompile "org.hamcrest:hamcrest-all:$test.hamcrest"
-    testCompile "org.powermock:powermock-module-junit4:$test.powerMock"
-    testCompile "org.powermock:powermock-module-junit4-rule:$test.powerMock"
-    testCompile "org.powermock:powermock-api-mockito2:$test.powerMock"
-    testCompile "org.powermock:powermock-classloading-xstream:$test.powerMock"
 
     androidTestCompile "com.android.support:support-annotations:$libs.supportLibraryVersion"
     androidTestCompile "com.android.support.test:runner:$test.runner"
     androidTestCompile "com.android.support.test:rules:$test.rules"
 
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }
 
 

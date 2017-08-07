@@ -5,7 +5,6 @@ import com.google.firebase.storage.StorageReference;
 
 import br.com.diegoferreiracaetano.petshop.data.storage.interfaces.StorageInterface;
 import br.com.diegoferreiracaetano.petshop.util.FileManager;
-import br.com.diegoferreiracaetano.petshop.util.dagger.qualify.Firebase;
 import dagger.Module;
 import dagger.Provides;
 
@@ -24,7 +23,6 @@ public class StorageFirebaseModule {
     }
 
     @Provides
-    @Firebase
     StorageInterface getStorageFirebase(StorageReference storageReference) {
         return new StorageFirebase(storageReference);
     }

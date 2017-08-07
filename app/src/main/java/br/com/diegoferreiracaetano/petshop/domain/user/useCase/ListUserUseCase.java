@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import br.com.diegoferreiracaetano.petshop.data.database.interfaces.UserRepository;
 import br.com.diegoferreiracaetano.petshop.domain.interfaces.InteractorMaybe;
 import br.com.diegoferreiracaetano.petshop.domain.user.User;
-import br.com.diegoferreiracaetano.petshop.util.dagger.qualify.Firebase;
 import io.reactivex.Maybe;
 
 public class ListUserUseCase extends InteractorMaybe<List<User>, ListUserUseCase.Request> {
@@ -16,7 +15,7 @@ public class ListUserUseCase extends InteractorMaybe<List<User>, ListUserUseCase
     UserRepository mRepository;
 
     @Inject
-    public ListUserUseCase(@Firebase UserRepository userRepository) {
+    public ListUserUseCase(UserRepository userRepository) {
         this.mRepository = userRepository;
     }
 

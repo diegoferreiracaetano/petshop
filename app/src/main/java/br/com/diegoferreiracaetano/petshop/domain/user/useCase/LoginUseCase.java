@@ -7,7 +7,6 @@ import br.com.diegoferreiracaetano.petshop.data.database.interfaces.UserReposito
 import br.com.diegoferreiracaetano.petshop.domain.interfaces.InteractorMaybe;
 import br.com.diegoferreiracaetano.petshop.domain.user.User;
 import br.com.diegoferreiracaetano.petshop.util.Md5Helper;
-import br.com.diegoferreiracaetano.petshop.util.dagger.qualify.Firebase;
 import io.reactivex.Maybe;
 
 public class LoginUseCase extends InteractorMaybe<User,LoginUseCase.Request> {
@@ -15,7 +14,7 @@ public class LoginUseCase extends InteractorMaybe<User,LoginUseCase.Request> {
     UserRepository mRepository;
 
     @Inject
-    public LoginUseCase(@Firebase UserRepository mRepository) {
+    public LoginUseCase(UserRepository mRepository) {
         this.mRepository = mRepository;
     }
 

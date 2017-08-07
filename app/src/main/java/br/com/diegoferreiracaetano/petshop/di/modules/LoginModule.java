@@ -1,7 +1,10 @@
-package br.com.diegoferreiracaetano.petshop.presentation.login;
+package br.com.diegoferreiracaetano.petshop.di.modules;
 
 import android.app.Activity;
 
+import br.com.diegoferreiracaetano.petshop.presentation.login.LoginActivity;
+import br.com.diegoferreiracaetano.petshop.presentation.login.LoginContract;
+import br.com.diegoferreiracaetano.petshop.presentation.login.LoginPresenter;
 import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;

@@ -1,13 +1,12 @@
-package br.com.diegoferreiracaetano.petshop;
+package br.com.diegoferreiracaetano.petshop.di.modules;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import br.com.diegoferreiracaetano.petshop.presentation.login.LoginSubcomponent;
+import br.com.diegoferreiracaetano.petshop.AppApplication;
 import dagger.Module;
 import dagger.Provides;
-import static android.os.Build.MODEL;
 
 @Module
 public class AppModule {
