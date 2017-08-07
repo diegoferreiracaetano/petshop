@@ -22,7 +22,7 @@ public class LoginInteractor extends InteractorMaybe<User,LoginInteractor.Reques
     protected Maybe<User> create(LoginInteractor.Request request) {
 
         return mRepository.getUser(request.getLogin())
-                .filter(user -> user.validate(user, Md5Helper.add(request.getPassword()))).defaultIfEmpty(new User());
+                .filter(user -> user.validate(user, Md5Helper.add(request.getPassword())));
     }
 
 

@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.crash.FirebaseCrash;
+
 import javax.inject.Inject;
 
 import br.com.diegoferreiracaetano.petshop.R;
@@ -20,17 +22,16 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
 
     @BindView(R.id.login_email)
-    TextInputLayout TI_email;
+    TextInputLayout text_input_email;
 
     @BindView(R.id.login_email_text)
     EditText email;
 
     @BindView(R.id.login_password)
-    TextInputLayout TI_password;
+    TextInputLayout text_input_password;
 
     @BindView(R.id.login_password_text)
     EditText passoword;
-
 
     @Inject
     LoginContract.Presenter mPresenter;
@@ -45,7 +46,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     private void initDagger() {
-
         AndroidInjection.inject(this);
     }
 
@@ -56,15 +56,20 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     @OnClick(R.id.login_entrar)
-    public void sigin(Button button){
+    public void sigin(){
         mPresenter.login(email.getText().toString(),passoword.getText().toString());
     }
 
     @Override
-    public void showMessageError(int title,int msg) {
-       DialogHelper.dialogMessage(this,title,msg).create();
+    public void showErrorUser( Throwable throwable) {
+        DialogHelper.dialogMessage(this,R.string.title_error,R.string.msg_error_general).show();
+        FirebaseCrash.report(throwable);
     }
 
+    @Override
+    public void showUserNotFound() {
+        DialogHelper.dialogMessage(this,R.string.title_user_not_found, R.string.msg_error_user_not_found).show();
+    }
 
     @Override
     public void show() {
@@ -72,12 +77,12 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     @Override
-    public void showErrorEmail(int msg) {
-        TI_email.setError(getString(msg));
+    public void showErrorEmail() {
+        text_input_email.setError(getString(R.string.msg_error_login_empty));
     }
 
     @Override
-    public void showErrorPassword(int msg) {
-        TI_password.setError(getString(msg));
+    public void showErrorPassword() {
+        text_input_password.setError(getString(R.string.msg_error_password_empty));
     }
 }
