@@ -1,4 +1,4 @@
-package br.com.diegoferreiracaetano.petshop.domain.user.useCase;
+package br.com.diegoferreiracaetano.petshop.domain.user.interactor;
 
 
 import javax.inject.Inject;
@@ -9,17 +9,17 @@ import br.com.diegoferreiracaetano.petshop.domain.user.User;
 import br.com.diegoferreiracaetano.petshop.util.Md5Helper;
 import io.reactivex.Maybe;
 
-public class LoginUseCase extends InteractorMaybe<User,LoginUseCase.Request> {
+public class LoginInteractor extends InteractorMaybe<User,LoginInteractor.Request> {
 
     UserRepository mRepository;
 
     @Inject
-    public LoginUseCase(UserRepository mRepository) {
+    public LoginInteractor(UserRepository mRepository) {
         this.mRepository = mRepository;
     }
 
     @Override
-    protected Maybe<User> create(LoginUseCase.Request request) {
+    protected Maybe<User> create(LoginInteractor.Request request) {
 
         return mRepository.getUser(request.getLogin())
                 .filter(user -> user.validate(user, Md5Helper.add(request.getPassword()))).defaultIfEmpty(new User());

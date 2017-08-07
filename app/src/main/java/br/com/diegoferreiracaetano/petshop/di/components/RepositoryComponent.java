@@ -1,12 +1,11 @@
-package br.com.diegoferreiracaetano.petshop.data.database.interfaces;
+package br.com.diegoferreiracaetano.petshop.di.components;
 
-import br.com.diegoferreiracaetano.petshop.data.database.firebase.FirebaseRepositoryModule;
-import br.com.diegoferreiracaetano.petshop.util.dagger.qualify.Firebase;
+import br.com.diegoferreiracaetano.petshop.di.modules.RepositoryModule;
+import br.com.diegoferreiracaetano.petshop.data.database.interfaces.UserRepository;
 import dagger.Component;
 
-@Component(modules = {FirebaseRepositoryModule.class})
+@Component(modules = {RepositoryModule.class})
 public interface RepositoryComponent {
 
-    @Firebase
     UserRepository getUserRepository();
 }

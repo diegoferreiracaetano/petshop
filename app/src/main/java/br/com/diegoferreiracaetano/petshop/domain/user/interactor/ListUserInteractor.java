@@ -1,4 +1,4 @@
-package br.com.diegoferreiracaetano.petshop.domain.user.useCase;
+package br.com.diegoferreiracaetano.petshop.domain.user.interactor;
 
 
 import java.util.List;
@@ -10,12 +10,12 @@ import br.com.diegoferreiracaetano.petshop.domain.interfaces.InteractorMaybe;
 import br.com.diegoferreiracaetano.petshop.domain.user.User;
 import io.reactivex.Maybe;
 
-public class ListUserUseCase extends InteractorMaybe<List<User>, ListUserUseCase.Request> {
+public class ListUserInteractor extends InteractorMaybe<List<User>, ListUserInteractor.Request> {
 
     UserRepository mRepository;
 
     @Inject
-    public ListUserUseCase(UserRepository userRepository) {
+    public ListUserInteractor(UserRepository userRepository) {
         this.mRepository = userRepository;
     }
 
